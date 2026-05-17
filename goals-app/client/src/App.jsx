@@ -7,10 +7,16 @@ export default function App() {
   const [goals, setGoals] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingGoal, setEditingGoal] = useState(null);
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
 
   useEffect(() => {
     fetch('/goals').then(r => r.json()).then(setGoals);
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', darkMode);
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
 
   async function handleSave(data) {
     if (editingGoal) {
@@ -70,7 +76,12 @@ export default function App() {
       <header className="app-header">
         <div className="header-content">
           <h1>My Goals</h1>
-          <button className="btn-primary" onClick={() => setShowForm(true)}>+ Add Goal</button>
+          <div className="header-actions">
+            <button className="btn-theme-toggle" onClick={() => setDarkMode(d => !d)} title="Toggle dark mode">
+              {darkMode ? '☀' : '☾'}
+            </button>
+            <button className="btn-primary" onClick={() => setShowForm(true)}>+ Add Goal</button>
+          </div>
         </div>
         <div className="stats">
           <div className="stat">
