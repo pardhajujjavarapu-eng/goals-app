@@ -11,6 +11,24 @@
   --color-in-progress: #3b82f6;
   --color-done: #22c55e;
   --color-overdue: #ef4444;
+  --status-badge-bg: #f1f5f9;
+  --status-in-progress-bg: #eff6ff;
+  --status-done-bg: #f0fdf4;
+  --danger-bg: #fef2f2;
+  --input-focus-bg: #ffffff;
+}
+
+body.dark {
+  --bg: #1a1b1e;
+  --card: #25262b;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #373a40;
+  --status-badge-bg: #373a40;
+  --status-in-progress-bg: #1e3358;
+  --status-done-bg: #14532d;
+  --danger-bg: #450a0a;
+  --input-focus-bg: #2c2d32;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,6 +38,7 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .app {
@@ -97,11 +116,11 @@ h1 { font-size: 1.75rem; font-weight: 700; }
   letter-spacing: 0.05em;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  background: #f1f5f9;
+  background: var(--status-badge-bg);
   color: var(--text-muted);
 }
-.status-badge.in-progress { background: #eff6ff; color: var(--color-in-progress); }
-.status-badge.done { background: #f0fdf4; color: var(--color-done); }
+.status-badge.in-progress { background: var(--status-in-progress-bg); color: var(--color-in-progress); }
+.status-badge.done { background: var(--status-done-bg); color: var(--color-done); }
 
 .card-actions { display: flex; gap: 0.2rem; }
 .card-actions button {
@@ -116,7 +135,7 @@ h1 { font-size: 1.75rem; font-weight: 700; }
   transition: all 0.15s;
 }
 .card-actions button:hover { background: var(--bg); color: var(--text); }
-.card-actions button.btn-danger:hover { background: #fef2f2; color: var(--danger); }
+.card-actions button.btn-danger:hover { background: var(--danger-bg); color: var(--danger); }
 
 .goal-card h3 { font-size: 1rem; font-weight: 600; line-height: 1.4; }
 .goal-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; }
@@ -129,7 +148,7 @@ h1 { font-size: 1.75rem; font-weight: 700; }
   border-radius: 6px;
   display: inline-block;
 }
-.deadline.overdue { background: #fef2f2; color: var(--color-overdue); font-weight: 600; }
+.deadline.overdue { background: var(--danger-bg); color: var(--color-overdue); font-weight: 600; }
 
 .status-btn {
   margin-top: auto;
@@ -215,7 +234,7 @@ h1 { font-size: 1.75rem; font-weight: 700; }
 .modal textarea:focus {
   outline: none;
   border-color: var(--primary);
-  background: white;
+  background: var(--input-focus-bg);
 }
 
 .form-actions {
@@ -236,3 +255,19 @@ h1 { font-size: 1.75rem; font-weight: 700; }
   transition: all 0.15s;
 }
 .form-actions button:first-child:hover { background: var(--bg); color: var(--text); }
+
+/* Dark mode toggle */
+.header-actions { display: flex; gap: 0.75rem; align-items: center; }
+
+.btn-theme-toggle {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text);
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-theme-toggle:hover { background: var(--border); }
