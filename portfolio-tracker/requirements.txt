@@ -1,0 +1,8 @@
+schwab-py
+pandas
+pandas-ta
+fastapi
+uvicorn[standard]
+python-dotenv
+sqlalchemy
+httpx

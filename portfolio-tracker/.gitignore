@@ -1,0 +1,13 @@
+.env
+token.json
+data/token.json
+*.db
+logs/*.log
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+node_modules/
+.DS_Store
+build/
+.env.local
